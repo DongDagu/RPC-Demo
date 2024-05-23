@@ -13,12 +13,12 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.2.0</version>
-        <relativePath/>
     </parent>
 
     <modules>
         <module>rpc-consumer</module>
         <module>rpc-provider</module>
+        <module>RPC</module>
     </modules>
 
     <properties>
