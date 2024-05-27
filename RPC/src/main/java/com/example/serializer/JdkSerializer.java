@@ -1,6 +1,8 @@
 package com.example.serializer;
 
 
+import com.example.model.RpcResponse;
+
 import java.io.*;
 
 

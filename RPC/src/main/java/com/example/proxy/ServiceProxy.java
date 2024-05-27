@@ -1,8 +1,13 @@
 package com.example.proxy;
 
+import cn.hutool.http.HttpRequest;
+import cn.hutool.http.HttpResponse;
 import com.example.model.RpcRequest;
+import com.example.model.RpcResponse;
 import com.example.serializer.JdkSerializer;
+import org.example.service.User;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
@@ -30,12 +35,24 @@ public class ServiceProxy implements InvocationHandler {
                 .args(args)
                 .build();
 
-        byte[] serialize = serializer.serialize(rpcRequest);
+        // 序列化
+        byte[] bodyBytes = serializer.serialize(rpcRequest);
 
-        // todo 发送http请求
-
+        try {
+            // 发送请求
+            // todo 注意，这里地址被硬编码了（需要使用注册中心和服务发现机制解决）
+            try (HttpResponse httpResponse = HttpRequest.post("http://localhost:8010/dgdong/providerMethod")
+                    .body(bodyBytes)
+                    .execute()) {
+                byte[] result = httpResponse.bodyBytes();
+                // 反序列化
+//                String rpcResponse = serializer.deserialize(result, String.class);
+//                return rpcResponse;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return null;
-
     }
 }
