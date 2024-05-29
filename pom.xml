@@ -20,6 +20,7 @@
         <module>rpc-provider</module>
         <module>RPC</module>
         <module>rpc-commen</module>
+        <module>rpc-official</module>
     </modules>
 
     <properties>

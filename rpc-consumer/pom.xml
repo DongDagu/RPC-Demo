@@ -20,7 +20,8 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.example</groupId>
-			<artifactId>RPC</artifactId>
+<!--			<artifactId>RPC</artifactId>-->
+			<artifactId>rpc-official</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
 
