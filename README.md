@@ -58,5 +58,5 @@ RpcConfig rpcConfig = RpcHolder.INSTANCE.getRpcConfig();
 
 
 ### 2024-05-29 新目标：修改RPC模块中遗留的简易本地服务注册器LocalRegistry
-<small>先去吃个饭，快递送了一个下午现在好饿</small>
+
 
