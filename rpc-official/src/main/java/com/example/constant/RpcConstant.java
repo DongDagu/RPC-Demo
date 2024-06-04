@@ -8,4 +8,6 @@ public interface RpcConstant {
     // 默认配置文件加载前缀
     String DEFAULT_PREFIX = "rpc";
 
+    String DEFAULT_VERSION = "1.0";
+
 }

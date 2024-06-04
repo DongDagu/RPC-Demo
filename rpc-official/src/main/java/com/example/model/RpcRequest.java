@@ -2,6 +2,7 @@ package com.example.model;
 
 
 
+import com.example.constant.RpcConstant;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,6 +24,9 @@ public class RpcRequest implements Serializable {
 
     // 方法名
     private String methodName;
+
+    // 默认服务版本
+    private String serviceVersion = RpcConstant.DEFAULT_VERSION;
 
     // 参数类型
     private Class<?>[] parameterTypes;

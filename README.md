@@ -58,5 +58,26 @@ RpcConfig rpcConfig = RpcHolder.INSTANCE.getRpcConfig();
 
 
 ### 2024-05-29 新目标：修改RPC模块中遗留的简易本地服务注册器LocalRegistry
+#### 准备
+下载etcd，[下载链接](https://github.com/etcd-io/etcd/releases)。
+下载对应系统的软件版本，以windows版本举例。下载之后得到一个压缩包，解压之后包含<b>etcd.exe(服务本身), etcdctl.exe(客户端，用于操作etcd), etcdutl.exe(备份回复工具)</b>。
+
+下载etcd图形化工具，这里用的是etcdKeeper，[下载链接](https://github.com/evildecay/etcdkeeper/)。
+
+先启动etcd.exe，再启动etcdkeeper.exe，自己实验用别搞什么登录验证，启动这两个进程就可以通过http://127.0.0.1:8080/etcdkeeper/访问图形界面。
+![](/jpg/etcdKeeper.png)
+
+### 2024-06-04 注册中心的基础功能已经实现了。
+在rpc-official模块中引入了junit-jupiter(junit依赖不适用springboot3)。添加了一个RegistryTest测试类。
+<strong>EtcdRegistry是实现注册中心的核心类、包含了服务注册，本地缓存注册、心跳检测(注册时间续期)、服务下线、服务列表获取</strong>
+SpiLoader类是spi机制的实现，这个项目中使用的序列化反序列化器是原生java提供，如果有更好的选择可以使用SpiLoader动态切换。注册中心实现方案同理，本项目基于etcd实现，如果要使用zookeeper实现也可以使用SpiLoader切换。
+- 启动etcd和etcdKeeper，启动rpc-provider模块会发现该服务已经注册到etcd啦。
+- 如果服务手动关闭会出发springboot提供的shoutDownHook功能自动从注册中心下线
+- 若因某些原因未能触发shoutDownHook，服务死亡后丢失心跳检测的续期操作etcd会在30秒后自动离线该服务
+
+### 2024-06-04 新目标：注册中心和服务提供者消费者没有强依赖，作为一个独立的服务。注册和调用通过注解完成，像Feign那样
+
+
+
 
 

@@ -4,11 +4,12 @@ package com.example.serializer;
 import java.io.*;
 
 
-public class JdkSerializer {
+public class JdkSerializer implements Serializer{
 
     /**
      * 序列化
      */
+    @Override
     public <T> byte[] serialize(T obj) {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         ObjectOutputStream objectOutputStream;
@@ -26,6 +27,7 @@ public class JdkSerializer {
     /**
      * 反序列化
      */
+    @Override
     public <T> T deserialize(byte[] bytes, Class<T> type) throws IOException {
         ByteArrayInputStream inputStream = new ByteArrayInputStream(bytes);
         try (ObjectInputStream objectInputStream = new ObjectInputStream(inputStream)) {

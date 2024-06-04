@@ -18,4 +18,6 @@ public class RpcConfig {
     // 服务端口
     private Integer serverPort = 8080;
 
+    // 注册中心
+    private RegistryConfig registryConfig = new RegistryConfig();
 }
